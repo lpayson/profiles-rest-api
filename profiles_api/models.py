@@ -14,6 +14,7 @@ class UserProfileManager(BaseUserManager):
 
         email = self.normalize_email(email)
         user = self.model(email=email, name=name,)
+
         user.set_password(password)
         user.save(using=self._db)
 
@@ -53,6 +54,6 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         """ Retrieve short name of user """
         return self.name
 
-        def _str_(self):
-            """Return string representation of our user"""
-            return self.email
+          def __str__(self):
+        """Return string representation of user"""
+        return self.email
